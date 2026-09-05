@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURUM TITANS · The 3D Realm of Mega Mansions</title>
+  <meta name="description" content="Ultra-exclusive waterfront trophy compounds, private acreage estates, and mega-mansions from $31.9M to $85M. Experience rotatable 3D architecture, exploded room inspection, and VIP concierge tours.">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="AURUM TITANS · The 3D Realm of Mega Mansions">
+  <meta property="og:description" content="Ultra-exclusive waterfront trophy compounds with 360° 3D room-split architecture viewer.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Cinzel (Regal Serif), Plus Jakarta Sans (Modern Clean), Space Grotesk (Tech Accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Three.js 3D WebGL Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Luxury Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. AURA FARMING HOLE / WORMHOLE WELCOME OVERLAY
+       Cosmic aura vortex opening into 3D world (1-sec warp animation)
+       ======================================================================== -->
+  <div id="aura-welcome-overlay" class="aura-welcome-overlay">
+    <canvas id="aura-portal-canvas"></canvas>
+    <div class="aura-content">
+      <div class="aura-badge"><i class="fa-solid fa-atom"></i> Quantum Portal Initializing</div>
+      <h1 class="aura-title">AURUM TITANS</h1>
+      <p class="aura-tagline">Welcome to the 3D realm of trophy architecture. Prepare to warp through the aura vortex into ultra-luxury compound estates.</p>
+      <button id="btn-enter-portal" class="aura-cta-btn">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Enter 3D World Now
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. FIXED SITE HEADER & NAVIGATION
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-gem"><i class="fa-solid fa-gem" style="font-size: 0.9rem; color: #050811;"></i></div>
+        <div class="brand-name">
+          AURUM TITANS
+          <span class="brand-sub">Mega Mansion Collection</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#hero-section" class="nav-link active">Home</a>
+        <a href="#viewer-3d-section" class="nav-link">3D World</a>
+        <a href="#estates-section" class="nav-link">Estates</a>
+        <a href="#calculator-section" class="nav-link">Financing</a>
+        <a href="#footer-section" class="nav-link">Brokerage</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-replay-portal" class="btn-portal-replay" title="Re-enter Aura Wormhole Vortex">
+          <i class="fa-solid fa-hurricane"></i> Aura Portal
+        </button>
+        <button id="btn-open-tour-header" class="btn-nav-tour">
+          <i class="fa-solid fa-helicopter"></i> VIP Tour
+        </button>
+        <button class="btn-mobile-menu" id="btn-mobile-toggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       3. HERO SECTION (NO LOCATION MENTIONED IN HEADLINE)
+       Features the prominent "TRY IN 3D" button & portfolio ticker bar
+       ======================================================================== -->
+  <section id="hero-section" class="hero-section">
+    <div class="hero-content">
+      <div class="hero-tag">
+        <i class="fa-solid fa-crown"></i>
+        <span>Architectural Compounds & Private Islands</span>
+      </div>
+
+      <!-- HEADLINE STRICTLY EXCLUDES LOCATION AS INSTRUCTED -->
+      <h1 class="hero-headline">THE PINNACLE OF TROPHY LIVING</h1>
+
+      <p class="hero-subtitle">
+        Immerse yourself in world-class compound architecture. Explore 360° interactive 3D estates, inspect individual rooms in exploded architectural mode, and experience private resort-grade living.
+      </p>
+
+      <!-- HERO PROMINENT "TRY IN 3D" BUTTON -->
+      <div class="hero-cta-wrapper">
+        <button id="btn-try-3d-hero" class="btn-try-3d-hero">
+          <i class="fa-solid fa-cube"></i>
+          <span>TRY IN 3D</span>
+        </button>
+        <a href="#estates-section" class="btn-secondary-hero">
+          <i class="fa-solid fa-compass"></i> View All Mansions
+        </a>
+      </div>
+
+      <!-- PORTFOLIO METRICS TICKER BAR -->
+      <div class="portfolio-metrics-bar">
+        <div class="metric-item">
+          <span class="metric-number">$424.9M</span>
+          <span class="metric-label">Portfolio Value</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-number">7</span>
+          <span class="metric-label">Trophy Compounds</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-number">100%</span>
+          <span class="metric-label">Waterfront & Marina</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-number">6 - 11</span>
+          <span class="metric-label">Bedrooms / Estate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. 3D MANSION VIEWER COCKPIT (ROTATABLE, ZOOMABLE, SPLIT-ROOMS IN 3D)
+       ======================================================================== -->
+  <section id="viewer-3d-section" class="viewer-3d-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">Interactive 3D Architectural World</span>
+        <h2 class="section-title">EXPLORE ARCHITECTURE IN 3D</h2>
+        <p class="section-description">
+          Click and drag to rotate 360°, zoom in/out with scroll, or activate <strong>Split Rooms</strong> to explode the architectural levels and inspect individual wings in real-time.
+        </p>
+      </div>
+
+      <div class="mansion-viewer-container">
+        <!-- TOP HUD -->
+        <div class="viewer-hud-top">
+          <div class="hud-mansion-info">
+            <div class="hud-badge-line">
+              <span class="hud-live-tag"><span class="hud-live-dot"></span> 3D WebGL Live Engine</span>
+            </div>
+            <h3 id="viewer-mansion-name" class="hud-title">Villa Skyfall</h3>
+            <div id="viewer-mansion-price" class="hud-price">$85,000,000</div>
+            <div id="viewer-mansion-scale" class="hud-scale">9 beds · 12 full / 2 half baths · 22,436 sq ft · 2.50 acres</div>
+          </div>
+
+          <div class="hud-controls-right">
+            <select id="viewer-mansion-select" class="mansion-select-dropdown" aria-label="Select Mansion to view in 3D">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- 3D WEBGL CANVAS WRAPPER -->
+        <div id="mansion-3d-canvas-wrapper"></div>
+
+        <!-- FLOATING LEVEL LABELS WHEN SPLIT -->
+        <div id="level-labels-overlay" class="level-labels-overlay">
+          <button class="btn-level-chip" data-level="4"><i class="fa-solid fa-helicopter"></i> Level 4: Helipad & Sky Deck</button>
+          <button class="btn-level-chip" data-level="3"><i class="fa-solid fa-bed"></i> Level 3: Master Penthouse</button>
+          <button class="btn-level-chip" data-level="2"><i class="fa-solid fa-couch"></i> Level 2: Grand Living Salon</button>
+          <button class="btn-level-chip" data-level="1"><i class="fa-solid fa-water-ladder"></i> Level 1: Resort Pool & Spa</button>
+          <button class="btn-level-chip" data-level="0"><i class="fa-solid fa-anchor"></i> Level 0: Marina & Vault</button>
+          <button class="btn-level-chip" data-level="-1"><i class="fa-solid fa-arrows-to-circle"></i> Reset All Tiers</button>
+        </div>
+
+        <!-- BOTTOM HUD (SPLIT CONTROLS, ZOOM, ROTATE, DAY/NIGHT) -->
+        <div class="viewer-hud-bottom">
+          <div class="hud-split-control-box">
+            <div class="split-label-text">
+              <i class="fa-solid fa-layer-group"></i> Split Rooms
+            </div>
+            <input type="range" id="split-range-slider" class="hud-split-slider" min="0" max="100" value="0" aria-label="Split Rooms Explode Amount">
+            <button id="btn-split-toggle" class="btn-hud-action">
+              <i class="fa-solid fa-layer-group"></i> Split Rooms in 3D
+            </button>
+          </div>
+
+          <div class="hud-camera-tools">
+            <button id="btn-zoom-in" class="btn-cam-tool" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+            <button id="btn-zoom-out" class="btn-cam-tool" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button id="btn-auto-rotate" class="btn-cam-tool active" title="Toggle 360° Auto-Rotation"><i class="fa-solid fa-arrows-rotate"></i></button>
+            <button id="btn-reset-cam" class="btn-cam-tool" title="Reset Camera View"><i class="fa-solid fa-crosshairs"></i></button>
+            <button id="btn-day-night" class="btn-hud-action" title="Toggle Day or Night Gala lighting">
+              <i class="fa-solid fa-moon"></i> Night Gala Mode
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. CLASH ROYALE STYLE 3D TRIANGULAR / FACETED ESTATE CARDS
+       Strict adherence: NO CLUTTER BADGES ON CARD FACE, ONLY PROPERTY NAME & SCALELINE.
+       Below card: PROMINENT "TRY 3D!" BUTTON + VIEW ESTATE + PRIVATE TOUR + BROCHURE.
+       ======================================================================== -->
+  <section id="estates-section" class="estates-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">Curated Trophy Compounds</span>
+        <h2 class="section-title">COLLECTION OF MEGA MANSIONS</h2>
+        <p class="section-description">
+          Detailed specifications compiled from official architectural disclosures and public brokerage files.
+        </p>
+      </div>
+
+      <!-- FILTER & SORT TOOLBAR -->
+      <div class="filter-toolbar">
+        <div class="location-chips-group" id="location-chips-container">
+          <button class="chip-btn active" data-location="ALL">All Enclaves</button>
+          <button class="chip-btn" data-location="Delray Beach">Delray Beach</button>
+          <button class="chip-btn" data-location="Coral Gables">Coral Gables</button>
+          <button class="chip-btn" data-location="Fort Lauderdale">Fort Lauderdale</button>
+          <button class="chip-btn" data-location="Manalapan">Manalapan</button>
+          <button class="chip-btn" data-location="West Palm Beach">West Palm Beach</button>
+        </div>
+
+        <div class="sort-select-wrapper">
+          <span class="sort-label">Sort By:</span>
+          <select id="sort-select" class="sort-select" aria-label="Sort estates">
+            <option value="price-desc">Price: High to Low</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="sqft-desc">Interior Square Feet</option>
+            <option value="beds-desc">Bedrooms Count</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 3D TRIANGULAR CARDS CONTAINER -->
+      <div id="estates-grid" class="estates-grid">
+        <!-- Rendered dynamically by web.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. MEGA-MANSION JUMBO INVESTMENT & WEALTH FINANCING CALCULATOR
+       ======================================================================== -->
+  <section id="calculator-section" class="calculator-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">Private Wealth Advisory</span>
+        <h2 class="section-title">ACQUISITION & JUMBO FINANCING</h2>
+        <p class="section-description">
+          Tailored financial projections for ultra-high-net-worth acquisitions, customized for $30M to $100M+ compound properties.
+        </p>
+      </div>
+
+      <div class="calculator-wrapper">
+        <div class="calc-inputs">
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <span class="calc-label">Select Estate for Calculation</span>
+            </div>
+            <select id="calc-mansion-select" class="form-select" aria-label="Select mansion for mortgage calculator">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <span class="calc-label">Purchase Price</span>
+              <span id="calc-price-label" class="calc-value-display">$85,000,000</span>
+            </div>
+            <input type="range" id="calc-price-slider" class="calc-slider" min="30000000" max="100000000" step="1000000" value="85000000" aria-label="Purchase price slider">
+          </div>
+
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <span class="calc-label">Down Payment Percentage</span>
+              <span id="calc-down-label" class="calc-value-display">30% ($25,500,000)</span>
+            </div>
+            <input type="range" id="calc-down-slider" class="calc-slider" min="10" max="50" step="5" value="30" aria-label="Down payment percentage slider">
+          </div>
+
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <span class="calc-label">Jumbo Interest Rate</span>
+              <span id="calc-rate-label" class="calc-value-display">6.25%</span>
+            </div>
+            <input type="range" id="calc-rate-slider" class="calc-slider" min="4.0" max="9.0" step="0.25" value="6.25" aria-label="Interest rate slider">
+          </div>
+
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <span class="calc-label">Loan Term</span>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <label style="color: #ffffff; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="radio" name="calc-term" value="30" checked> 30 Years Fixed
+              </label>
+              <label style="color: #ffffff; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="radio" name="calc-term" value="15"> 15 Years Fixed
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-results-card">
+          <div>
+            <h3 class="results-heading">Estimated Monthly Outlay</h3>
+            <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">Private Banking Tier</span>
+            <div id="calc-monthly-total" class="monthly-payment-amount">$436,850 / mo</div>
+          </div>
+
+          <ul class="breakdown-list">
+            <li class="breakdown-row">
+              <span>Principal & Interest</span>
+              <span id="calc-pi-amount">$366,410</span>
+            </li>
+            <li class="breakdown-row">
+              <span>Florida Property Tax (~1.1%)</span>
+              <span id="calc-tax-amount">$77,910</span>
+            </li>
+            <li class="breakdown-row">
+              <span>Waterfront Hazard & Hurricane Insurance</span>
+              <span id="calc-insurance-amount">$21,250</span>
+            </li>
+            <li class="breakdown-row">
+              <span>24/7 Gated Security & Marina Maintenance</span>
+              <span id="calc-hoa-amount">$6,500</span>
+            </li>
+          </ul>
+
+          <button id="btn-consult-wealth" class="btn-card-try-3d" style="background: var(--gold-gradient);">
+            <i class="fa-solid fa-briefcase"></i> Connect with Private Wealth Desk
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. COMPREHENSIVE "VIEW ESTATE" DOSSIER MODAL
+       Contains all PDF details: Day View, Night View, Garden, Area, Nearby Lifestyle,
+       Developer/Broker attribution, Why this works, etc.
+       ======================================================================== -->
+  <div id="estate-detail-modal" class="modal-backdrop">
+    <div class="modal-dialog-large">
+      <button class="modal-close-btn" id="btn-close-detail-modal" aria-label="Close details modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- MODAL HERO & PERSPECTIVE TABS -->
+      <div class="modal-header-hero">
+        <img id="modal-hero-img" class="modal-hero-img" src="" alt="Estate View">
+        <div class="modal-hero-gradient"></div>
+
+        <!-- PERSPECTIVE TABS (DAY VIEW, NIGHT VIEW, GARDEN, WATERFRONT, INTERIOR, MASTER) -->
+        <div class="gallery-perspectives-tabs" id="modal-perspectives-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="modal-hero-caption">
+          <div>
+            <h2 id="modal-estate-name" class="modal-property-title">Villa Skyfall</h2>
+            <p id="modal-estate-address" class="modal-property-address">16121 Quiet Vista Circle, Delray Beach, Florida 33446</p>
+          </div>
+          <div id="modal-estate-price" class="modal-property-price">$85,000,000</div>
+        </div>
+      </div>
+
+      <!-- MODAL BODY -->
+      <div class="modal-body-content">
+        <!-- SPECS GRID -->
+        <div class="modal-specs-grid">
+          <div class="spec-block">
+            <span class="spec-title">Bedrooms / Baths</span>
+            <span id="modal-spec-beds-baths" class="spec-val">9 Beds · 14 Baths</span>
+          </div>
+          <div class="spec-block">
+            <span class="spec-title">Living Footprint</span>
+            <span id="modal-spec-sqft" class="spec-val">22,436 Sq Ft</span>
+          </div>
+          <div class="spec-block">
+            <span class="spec-title">Acreage & Lot</span>
+            <span id="modal-spec-acres" class="spec-val">2.50 Acres</span>
+          </div>
+          <div class="spec-block">
+            <span class="spec-title">Waterfront / Dockage</span>
+            <span id="modal-spec-waterfront" class="spec-val">Lakefront Estate</span>
+          </div>
+        </div>
+
+        <!-- LUXURY HIGHLIGHTS (FROM PDF) -->
+        <div>
+          <h3 class="modal-section-title"><i class="fa-solid fa-gem"></i> Luxury Highlights</h3>
+          <ul id="modal-highlights-list" class="modal-highlights-list">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+        <!-- NEARBY LIFESTYLE (FROM PDF) -->
+        <div>
+          <h3 class="modal-section-title"><i class="fa-solid fa-location-dot"></i> Nearby Lifestyle & Enclave Context</h3>
+          <div id="modal-lifestyle-text" class="modal-lifestyle-box">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- WHY THIS WORKS ON A LUXURY WEBSITE (FROM PDF) -->
+        <div>
+          <h3 class="modal-section-title"><i class="fa-solid fa-award"></i> Trophy Curation Analysis</h3>
+          <div id="modal-why-text" class="modal-why-box">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- BROKERAGE & DEVELOPER ATTRIBUTION (FROM PDF) -->
+        <div class="modal-broker-attribution">
+          <div>
+            <strong style="color: var(--text-primary);">Listed / Developed By:</strong>
+            <span id="modal-broker-name">Aldo & Fiorenna Stark / Prestige Design Homes; Compass</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); color: var(--cyan-primary);">Status: MLS Verified 2026</span>
+          </div>
+        </div>
+
+        <!-- MODAL ACTION FOOTER -->
+        <div class="modal-action-footer">
+          <button id="modal-btn-try-3d" class="btn-card-try-3d" style="flex: 1;">
+            <i class="fa-solid fa-cube"></i> Open 3D World & Split Rooms
+          </button>
+          <button id="modal-btn-schedule-tour" class="btn-card-view-estate" style="padding: 0.95rem 1.8rem; font-size: 0.9rem;">
+            <i class="fa-solid fa-calendar-check"></i> Schedule Private Tour
+          </button>
+          <button id="modal-btn-download-brochure" class="btn-card-private-tour" style="padding: 0.95rem 1.8rem; font-size: 0.9rem;">
+            <i class="fa-solid fa-file-pdf"></i> Download Digital Brochure
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       8. VIP PRIVATE TOUR CONCIERGE MODAL
+       ======================================================================== -->
+  <div id="tour-modal" class="modal-backdrop">
+    <div class="modal-dialog-large" style="max-width: 680px; padding: 2.5rem;">
+      <button class="modal-close-btn" id="btn-close-tour-modal" aria-label="Close tour modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.25em; color: var(--gold-glow); text-transform: uppercase;">
+          Exclusive Access Protocol
+        </div>
+        <h2 style="font-family: var(--font-serif); font-size: 2rem; color: #ffffff; margin-top: 0.3rem;">Schedule Private Showing</h2>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">Request an escorted private arrival via private helicopter, luxury chauffeur, or yacht tender.</p>
+      </div>
+
+      <form id="tour-concierge-form" class="modal-form">
+        <div class="form-group">
+          <label class="form-label">Target Mega-Mansion</label>
+          <select id="tour-estate-select" class="form-select" required>
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Principal Full Name</label>
+            <input type="text" class="form-input" placeholder="e.g. Lord Alexander Sterling" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Email / Family Office</label>
+            <input type="email" class="form-input" placeholder="office@sterling-holdings.com" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label">Preferred Date</label>
+            <input type="date" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Time Window</label>
+            <select class="form-select">
+              <option>Morning (10:00 AM - 12:30 PM)</option>
+              <option>Sunset Golden Hour (4:30 PM - 7:00 PM)</option>
+              <option>Night Gala Viewing (8:00 PM - 10:00 PM)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">VIP Arrival Transportation Preference</label>
+          <div class="transport-options-grid">
+            <div class="transport-card active" data-transport="Helicopter">
+              <i class="fa-solid fa-helicopter"></i>
+              <span style="font-size: 0.82rem; font-weight: 600;">Helicopter Charter</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted);">Direct Helipad Landing</span>
+            </div>
+            <div class="transport-card" data-transport="Yacht Tender">
+              <i class="fa-solid fa-ship"></i>
+              <span style="font-size: 0.82rem; font-weight: 600;">Yacht Tender</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted);">Deepwater Marina Dock</span>
+            </div>
+            <div class="transport-card" data-transport="Rolls-Royce">
+              <i class="fa-solid fa-car-side"></i>
+              <span style="font-size: 0.82rem; font-weight: 600;">Private Chauffeur</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted);">Armored Escort Fleet</span>
+            </div>
+          </div>
+        </div>
+
+        <label class="nda-checkbox-label">
+          <input type="checkbox" required checked>
+          <span>I understand that a mutual Non-Disclosure Agreement (NDA) and proof of funds will be countersigned prior to arrival.</span>
+        </label>
+
+        <button type="submit" class="btn-card-try-3d" style="background: var(--gold-gradient); margin-top: 0.5rem;">
+          <i class="fa-solid fa-shield-halved"></i> Transmit Confidential Booking Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       9. DIGITAL BROCHURE DOSSIER MODAL
+       ======================================================================== -->
+  <div id="brochure-modal" class="modal-backdrop">
+    <div class="modal-dialog-large" style="max-width: 850px; padding: 2.5rem; background: #0b1120;">
+      <button class="modal-close-btn" id="btn-close-brochure-modal" aria-label="Close brochure modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div style="border-bottom: 1px solid var(--border-gold); padding-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold-glow); letter-spacing: 0.2em; text-transform: uppercase;">Confidential Estate Portfolio</span>
+          <h2 id="brochure-estate-name" style="font-family: var(--font-serif); font-size: 2.2rem; color: #ffffff;">Villa Skyfall</h2>
+          <p id="brochure-estate-address" style="color: var(--text-secondary); font-size: 0.95rem;">16121 Quiet Vista Circle, Delray Beach, Florida</p>
+        </div>
+        <div id="brochure-estate-price" style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--gold-glow);">$85,000,000</div>
+      </div>
+
+      <div style="margin: 2rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <img id="brochure-estate-img" src="" alt="Estate" style="width: 100%; height: 260px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-glass);">
+        <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.92rem; color: var(--text-secondary);">
+          <p><strong style="color: #ffffff;">Scale:</strong> <span id="brochure-scale-text">9 beds · 14 baths · 22,436 sq ft</span></p>
+          <p><strong style="color: #ffffff;">Enclave:</strong> <span id="brochure-region-text">Stone Creek Ranch</span></p>
+          <p><strong style="color: #ffffff;">Listing Agency:</strong> <span id="brochure-broker-text">Compass / Palm Beach Luxury</span></p>
+          <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); margin-top: 0.5rem;" id="brochure-bio-text">
+            Landmark trophy compound aimed at collectors seeking unrivaled privacy, entertaining capacity and resort-grade amenities.
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1.5rem;">
+        <span style="font-size: 0.78rem; color: var(--text-muted);">Information deemed reliable but not guaranteed · MLS 2026 Archive</span>
+        <div style="display: flex; gap: 1rem;">
+          <button onclick="window.print()" class="btn-card-view-estate" style="padding: 0.7rem 1.4rem;">
+            <i class="fa-solid fa-print"></i> Print Dossier
+          </button>
+          <button id="btn-download-pdf-dummy" class="btn-card-try-3d" style="padding: 0.7rem 1.4rem; font-size: 0.85rem;">
+            <i class="fa-solid fa-download"></i> Save PDF File
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       10. FOOTER & COMPLIANCE SECTION (FROM PDF PAGE 1 & 5)
+       ======================================================================== -->
+  <footer id="footer-section" class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="brand-name" style="font-size: 1.6rem;">
+            AURUM TITANS
+            <span class="brand-sub">Mega Mansion Portal</span>
+          </div>
+          <p class="footer-brand-bio">
+            Representing premier mega-mansions and private waterfront compounds. Exclusively focusing on 6+ bedroom landmark estates valued from $31.9M to $85M+.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Enclaves</h4>
+          <ul class="footer-links-list">
+            <li><a href="#estates-section" class="footer-link">Stone Creek Ranch</a></li>
+            <li><a href="#estates-section" class="footer-link">Gables Estates</a></li>
+            <li><a href="#estates-section" class="footer-link">Riviera Isles</a></li>
+            <li><a href="#estates-section" class="footer-link">Manalapan Oceanfront</a></li>
+            <li><a href="#estates-section" class="footer-link">Las Olas Isles</a></li>
+            <li><a href="#estates-section" class="footer-link">Isla Bahia & SoSo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">3D Technology</h4>
+          <ul class="footer-links-list">
+            <li><a href="#viewer-3d-section" class="footer-link">360° Orbit Explorer</a></li>
+            <li><a href="#viewer-3d-section" class="footer-link">Split Rooms Architecture</a></li>
+            <li><a href="#viewer-3d-section" class="footer-link">Night Gala Lighting</a></li>
+            <li><a href="#viewer-3d-section" class="footer-link">Helipad & Marina Inspection</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Private Concierge</h4>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Direct lines for verified family offices, private wealth advisors, and principals.
+          </p>
+          <div style="display: flex; gap: 0.8rem;">
+            <button id="btn-footer-tour" class="btn-card-view-estate" style="width: 100%;">
+              <i class="fa-solid fa-helicopter"></i> Request Private Tour
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEGAL CHECKLIST SECTION FROM PDF PAGE 1 & 5 -->
+      <div class="footer-legal-bar">
+        <div class="legal-notice-highlight">
+          <i class="fa-solid fa-scale-balanced"></i> Source Note & Media Rights Compliance (Ref: PDF Page 1 & 5)
+        </div>
+        <p>
+          Key specifications were compiled from public brokerage/listing pages and real-estate reporting: Villa Skyfall, 641 Leucadendra Drive, 1000A Riviera Isle Drive, 640 S Ocean Boulevard, 525 Isle of Capri Drive, 23 Isla Bahia Drive, and 6315 S Flagler Drive. This website serves as a design-and-shortlisting reference, not an appraisal or legal verification.
+        </p>
+        <p>
+          <strong>Information deemed reliable but not guaranteed.</strong> Property facts, availability, price, broker rights, and measurements must be reconfirmed before contract execution. Properties indicated as proposed (e.g. Manor at Banyan Point) represent artist renderings and architectural concepts, not completed improvements.
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.75rem;">
+          Listing/developer attribution: Aldo and Fiorenna Stark / Prestige Design Homes / Compass Palm Beach Luxury · One Sotheby’s International Realty · Jack Elkins / William Raveis · Hilary Musser.
+        </p>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>© 2026 AURUM TITANS · All Rights Reserved.</span>
+        <span>Crafted with WebGL 3D & Ultra-Luxury Design Standards.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- APPLICATION ENTRYPOINT SCRIPT -->
+  <script type="module" src="web.js"></script>
+</body>
+</html>
